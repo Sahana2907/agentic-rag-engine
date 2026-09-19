@@ -1,0 +1,14 @@
+# Python environment & cache
+.venv/
+__pycache__/
+*.pyc
+
+# Local ChromaDB persistent storage
+chroma_db/
+
+# Streamlit config/cache
+.streamlit/
+
+# OS artifacts
+.DS_Store
+Thumbs.db

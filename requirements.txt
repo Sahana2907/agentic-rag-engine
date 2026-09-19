@@ -1,0 +1,8 @@
+langchain
+langchain-community
+langchain-text-splitters
+chromadb
+sentence-transformers
+rank_bm25
+pydantic
+rich

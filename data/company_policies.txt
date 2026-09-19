@@ -1,0 +1,9 @@
+Project Phoenix Deployment Architecture:
+The core streaming ingestion platform operates on Apache Kafka with a partition replication factor of 3.
+All data transformations are scheduled using Apache Airflow Directed Acyclic Graphs (DAGs) running every 15 minutes.
+For persistence, transactional events land in Snowflake via Snowpipe streaming, while raw bronze events are archived in AWS S3 with a Glacier transition lifecycle rule set to 90 days.
+
+Schema Drift Protocol:
+In case of upstream schema alteration, the self-healing engine isolates unparseable payloads into the local Dead-Letter Queue (DLQ).
+The automated recovery SLA is under 500ms when utilizing the in-memory SQLite schema cache.
+If schema drift recovery fails consecutively 3 times, an alert is dispatched to the on-call data platform engineer via PagerDuty.
